@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var metrics = require('./routes/Metrics');
+var articalCategory = require('./routes/ArticalCategory');
 var bodyParser = require('body-parser')
 var app = express();
 
@@ -40,8 +41,11 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
-//add Metrics
+//Metrics
 app.use('/metrics',metrics);
+
+//Artical
+app.use('/ArticalCategory',articalCategory);
 
 //Database connection mongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/TeaStockSystem");
