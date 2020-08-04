@@ -8,10 +8,12 @@ var mongoose = require("mongoose");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var metrics = require('./routes/Metrics');
-var articalCategory = require('./routes/ArticalCategory');
 var bodyParser = require('body-parser')
 var app = express();
+
+var metrics = require('./routes/Metrics');
+var articalCategory = require('./routes/ArticalCategory');
+var artical  = require('./routes/Artical');
 
 app.use(function(req, res, next) {
   //set headers to allow cross origin request.
@@ -44,8 +46,11 @@ app.use('/users', usersRouter);
 //Metrics
 app.use('/metrics',metrics);
 
-//Artical
+//Artical Category
 app.use('/ArticalCategory',articalCategory);
+
+//Artical 
+app.use('/Artical',artical);
 
 //Database connection mongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/TeaStockSystem");
