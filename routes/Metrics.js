@@ -24,6 +24,7 @@ router.get('/load',(req,res)=>{
      })
 });
 
+//Add metrics
 router.post('/addmetrics',function(req,res){
 
     var newMetrics = new metric(req.body);  
@@ -37,6 +38,7 @@ router.post('/addmetrics',function(req,res){
         });
 });
 
+//delete Metrics
 router.post('/onDelete',function(req,res){
     
     metric.findOneAndUpdate(
@@ -53,6 +55,7 @@ router.post('/onDelete',function(req,res){
         });
 });
 
+//Delete metrics active
 router.post('/onActive',function(req,res){
     
     metric.findOneAndUpdate(

@@ -9,7 +9,7 @@ router.post('/add',function(req,res){
 
     newArtical.save()
         .then(data =>{
-            res.status(200).json({status:true,msg:"Metrics Add Succssfully!"});
+            res.status(200).json({status:true,msg:"Artical Added Succssfully!"});
         })
         .catch(err=>{
             res.status(400).send("Unable to Save the Database!");
@@ -26,7 +26,39 @@ router.get('/view',(req,res)=>{
      })
 });
 
+//delete Artical
+router.post('/onDelete',function(req,res){
+  
+    artical.findOneAndUpdate(
+            {_id:req.body.ArticalID},
+            { $set:{IsDeleted:true,ExpiryDate:new Date()}},
+            {new:true})
+        .then(myArtical=>{
+            res.status(200).json({status:true,msg:"Artical Deleted Succssfully!"});
+            console.log("true");
+        })
+        .catch(err=>{
+            res.status(400).send(err);
+            console.log(err);
+        });
+});
 
+//Delete Artical active
+router.post('/onActive',function(req,res){
+    
+    artical.findOneAndUpdate(
+            {_id:req.body.ArticalID},
+            { $set:{IsDeleted:false,ExpiryDate:null}},
+            {new:true})
+        .then(myArtical=>{
+            res.status(200).json({status:true,msg:"Artical Active Succssfully!"});
+            console.log("true");
+        })
+        .catch(err=>{
+            res.status(400).send(err);
+            console.log(err);
+        });
+});
 
 
 module.exports = router;
