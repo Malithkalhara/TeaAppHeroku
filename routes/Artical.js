@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const artical = require('../models/ArticalCategory.model');
+const artical = require('../models/Artical.model');
 
 //add
 router.post('/add',function(req,res){
@@ -10,7 +10,7 @@ router.post('/add',function(req,res){
 
     newArtical.save()
         .then(data =>{
-            res.status(200).json({status:true,msg:"ArticalCategory Added Succssfully!"});
+            res.status(200).json({status:true,msg:"Artical Added Succssfully!"});
         })
         .catch(err=>{
             res.status(400).send("Unable to Save the Database!");
@@ -47,7 +47,7 @@ router.post('/onDelete',function(req,res){
             { $set:{IsDeleted:true,ExpiryDate:new Date()}},
             {new:true})
         .then(myArtical=>{
-            res.status(200).json({status:true,msg:"ArticalCategory Deleted Succssfully!"});
+            res.status(200).json({status:true,msg:"Artical Deleted Succssfully!"});
             console.log("true");
         })
         .catch(err=>{
@@ -55,6 +55,7 @@ router.post('/onDelete',function(req,res){
             console.log(err);
         });
 });
+
 
 //Delete Artical active
 router.post('/onActive',function(req,res){
@@ -64,7 +65,7 @@ router.post('/onActive',function(req,res){
             { $set:{IsDeleted:false,ExpiryDate:null}},
             {new:true})
         .then(myArtical=>{
-            res.status(200).json({status:true,msg:"ArticalCategory Active Succssfully!"});
+            res.status(200).json({status:true,msg:"Artical Active Succssfully!"});
             console.log("true");
         })
         .catch(err=>{
@@ -75,3 +76,4 @@ router.post('/onActive',function(req,res){
 
 
 module.exports = router;
+
