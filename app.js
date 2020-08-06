@@ -17,6 +17,7 @@ var artical  = require('./routes/Artical');
 var product = require('./routes/Product');
 var suppler = require('./routes/Suppler');
 var warehouse = require('./routes/Warehouse');
+var supplerInvoice = require('./routes/SupplerInvoice');
 
 app.use(function(req, res, next) {
   //set headers to allow cross origin request.
@@ -63,6 +64,9 @@ app.use('/Suppler',suppler);
 
 //Warehouse
 app.use('/Warehouse',warehouse);
+
+//suppler Invoice
+app.use('/SupplerInvoice',supplerInvoice)
 
 //Database connection mongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/TeaStockSystem");
