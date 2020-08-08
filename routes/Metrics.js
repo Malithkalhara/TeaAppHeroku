@@ -27,15 +27,24 @@ router.get('/load',(req,res)=>{
 //Add metrics
 router.post('/addmetrics',function(req,res){
 
-    var newMetrics = new metric(req.body);  
+ 
+    metric.find({Measure:req.body.Measure}).exec((err,docs)=>{
+        if(docs.length){
+             res.status(200).json({status:false,msg:" Metrics Already Added ! "});
+             console.log(docs.length);      
+        }
+        else{
+                var newMetrics = new metric(req.body);  
 
-    newMetrics.save()
-        .then(myMetrics=>{
-            res.status(200).json({status:true,msg:"Metrics Add Succssfully!"});
-        })
-        .catch(err=>{
-            res.status(400).send("Unable to Save the Database!");
-        });
+                newMetrics.save()
+                    .then(myMetrics=>{
+                        res.status(200).json({status:true,msg:" Metrics Added Succssfully ! "});
+                    })
+                    .catch(err=>{
+                        res.status(400).json({status:true,msg:" Unable to Save the Database! "});
+                    });
+         }
+    });
 });
 
 //delete Metrics
@@ -46,7 +55,7 @@ router.post('/onDelete',function(req,res){
             { $set:{IsDeleted:true,ExpiryDate:new Date()}},
             {new:true})
         .then(myMetrics=>{
-            res.status(200).json({status:true,msg:"Metrics Delete Succssfully!"});
+            res.status(200).json({status:true,msg:"Metrics Deleted Succssfully!"});
             console.log("true");
         })
         .catch(err=>{

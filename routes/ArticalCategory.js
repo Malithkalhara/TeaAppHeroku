@@ -2,25 +2,35 @@ const express = require('express');
 const router = express.Router();
 
 const artical = require('../models/ArticalCategory.model');
+const metricsModel = require('../models/metrics.model');
 
 //add
 router.post('/add',function(req,res){
 
-    var newArtical = new artical(req.body);  
-
-    newArtical.save()
-        .then(data =>{
-            res.status(200).json({status:true,msg:"ArticalCategory Added Succssfully!"});
-        })
-        .catch(err=>{
-            res.status(400).send("Unable to Save the Database!");
-        });
+    artical.find({categoryName:req.body.categoryName,metricsID:req.body.metricsID}).exec((err,docs)=>{
+        if(docs.length){
+            res.status(200).json({status:false,msg:" ArticalCategory Already Added ! "});
+       }
+       else{
+            
+            var newArtical = new artical(req.body); 
+            newArtical.save()
+                .then(data =>{
+                    res.status(200).json({status:true,msg:"ArticalCategory Added Succssfully!"});
+                })
+                .catch(err=>{
+                    res.status(400).send("Unable to Save the Database!");
+                });
+        }
+    })
 });
 
 //view
 router.get('/view',(req,res)=>{
     artical.find()
      .then( myArtical =>{
+        // console.log(myArtical);
+     //   metricsModel.findMetricsWithID(myArtical);
          res.status(200).json({data:myArtical})
      })
      .catch(err=>{
