@@ -5,6 +5,7 @@ const schema = mongoose.Schema;
 const ArticalSchema = new schema({
 
     categoryName:{type:String},
+    metricsID:String,
     buying:Boolean,
     selling:Boolean,
     comment:String,

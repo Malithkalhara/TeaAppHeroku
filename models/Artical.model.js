@@ -3,8 +3,9 @@ const schema = mongoose.Schema;
 
 const articalSchema = new schema({
 
+    categoryID:String,
+    metricsID:String,
     articalName:String,
-    metrics:String,
     volume:String,
     buyPrice:Number,
     sellPrice:Number,
