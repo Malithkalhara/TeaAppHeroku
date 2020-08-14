@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 class AuthenticationService {
     constructor(http) {
         this.http = http;
-        this.apiUri = 'http://localhost:3000';
+        this.apiUri = 'https://tea-app-new.herokuapp.com';
         this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -182,7 +182,7 @@ __webpack_require__.r(__webpack_exports__);
 class RepService {
     constructor(http) {
         this.http = http;
-        this.apiUri = 'http://localhost:3000';
+        this.apiUri = 'https://tea-app-new.herokuapp.com';
     }
     allShops() {
         return this.http.get(`${this.apiUri}/shops/all`);
@@ -224,7 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 class SupplerService {
     constructor(http) {
         this.http = http;
-        this.apiUrl = 'http://localhost:3000';
+        this.apiUrl = 'https://tea-app-new.herokuapp.com';
     }
     //view Metrics
     viewAllMetrics() {
@@ -377,7 +377,7 @@ __webpack_require__.r(__webpack_exports__);
 class UserService {
     constructor(http) {
         this.http = http;
-        this.apiUri = 'http://localhost:3000';
+        this.apiUri = 'https://tea-app-new.herokuapp.com/';
     }
     registerUser(user) {
         return this.http.post(`${this.apiUri}/users/register`, user);
