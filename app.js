@@ -70,7 +70,7 @@ app.use('/Warehouse',warehouse);
 app.use('/SupplerInvoice',supplerInvoice)
 
 //Database connection mongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/TeaStockSystem");
+mongoose.connect("mongodb://malith:password1@ds039115.mlab.com:39115/heroku_b61ckdhg");
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("Connection esteblished successfully");
