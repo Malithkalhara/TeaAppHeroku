@@ -70,7 +70,7 @@ app.use('/Warehouse',warehouse);
 app.use('/SupplerInvoice',supplerInvoice)
 
 //Database connection mongoDB mLab on heroku
-mongoose.connect("mongodb://malith:password1@ds039115.mlab.com:39115/heroku_b61ckdhg");
+mongoose.connect("mongodb://malith:password@123@ds039115.mlab.com:39115/heroku_qvmb57jc");
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("Connection esteblished successfully");
